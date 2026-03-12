@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로또 추천번호</title>
+
+<style>
+
+body{
+    text-align:center;
+    font-family:Arial;
+    margin-top:100px;
+}
+
+button{
+    padding:10px 20px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.ball{
+    display:inline-block;
+    width:50px;
+    height:50px;
+    line-height:50px;
+    border-radius:50%;
+    background:gold;
+    margin:5px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+</style>
+
+<script>
+function getLotto(){
+
+    let numbers = [];
+
+    while(numbers.length < 6){
+
+        let num = Math.floor(Math.random()*45)+1;
+
+        if(numbers.includes(num)){
+            continue;
+        }
+
+        numbers.push(num);
+    }
+
+    numbers.sort(function(a,b){
+        return a-b;
+    });
+
+    let result = "";
+
+    for(let i=0;i<numbers.length;i++){
+        result += "<span class='ball'>"+numbers[i]+"</span>";
+    }
+
+    document.getElementById("lottoNumber").innerHTML = result;
+}
+</script>
+
+</head>
+
+<body>
+
+<h1> 로또 추천 번호</h1>
+
+<h2 id="lottoNumber"></h2>
+
+<button onclick="getLotto()">번호 생성</button>
+
+</body>
+</html>
